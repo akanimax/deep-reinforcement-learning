@@ -1,20 +1,23 @@
 """ Script for running the experiment with different number of
-    bandits and different values of their rewards
+    bandits and different values of their rewards.
+    This experiment runs the environment using the optimistic initial values
+    algorithm
 """
 
-import ExploreExploit.EpsilonGreedy as eg
+import ExploreExploit.OptimisticInitialValues as oiv
 import matplotlib.pyplot as plt
 
 # Define the parameters for tweaking
 # ====================================================================
 bandit_means = [37, 29, 54, 83, 27, 62]
-epsilon = 0.1
+initial_optimistic_mean = 90
 n = 10000  # number of iterations
 # Note that n should be an integer
 # ====================================================================
 
 # run the simulation
-result = eg.simulate(*bandit_means, epsilon=epsilon, n=n, feed_back=True, feed_back_factor=1000)
+result = oiv.simulate(*bandit_means, initial_optimistic_mean=initial_optimistic_mean,
+                      n=n, feed_back=True, feed_back_factor=1000)
 
 # plot the result using matplotlib
 plt.figure().suptitle("Simulation result")
